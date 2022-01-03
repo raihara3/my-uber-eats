@@ -4,7 +4,6 @@ services:
   db:
     platform: linux/x86_64
     image: mysql:5.7
-    container_name: my_uber_eats_db
     environment:
       MYSQL_DATABASE: my_uber_eats
       MYSQL_USER: user
@@ -16,7 +15,6 @@ services:
 
   web:
     build: .
-    container_name: my_uber_eats_web
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp/
