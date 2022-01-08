@@ -1,6 +1,6 @@
 import React from "react"
 
-const Orders = () => {
+const Orders: React.FC = () => {
   return (
     <>
       注文画面

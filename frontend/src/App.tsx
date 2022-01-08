@@ -12,7 +12,7 @@ import Restaurants from './containers/Restaurants'
 import Foods from './containers/Foods'
 import Orders from './containers/Orders'
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Switch>
@@ -35,7 +35,7 @@ function App() {
           path="/restaurants/:restaurantsId/foods"
           render={({ match }) =>
             <Foods
-              match={match}
+              restaurantsId={match.params.restaurantsId}
             />
           }
         />

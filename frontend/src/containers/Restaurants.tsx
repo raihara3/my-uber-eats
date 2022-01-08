@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 // apis
-import { fetchRestaurants } from '../apis/restaurants'; //←この行を追加する
+import { fetchRestaurants } from '../apis/restaurants'
 
 const Restaurants = () => {
   useEffect(() => {
