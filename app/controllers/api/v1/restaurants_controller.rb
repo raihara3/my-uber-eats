@@ -4,6 +4,8 @@ module Api
       def index
         restaurants = Restaurant.all
 
+        sleep(1)
+
         render json: {
           restaurants: restaurants
         }, status: :ok
