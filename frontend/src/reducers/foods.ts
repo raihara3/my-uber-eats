@@ -2,7 +2,10 @@
 import { REQUEST_STATE } from "../constants"
 
 // action
-import { RESTAURANTS_FETCHING_ACTION, RESTAURANTS_FETCH_SUCCESS_ACTION } from "../actions"
+import {
+  FOODS_FETCHING_ACTION,
+  FOODS_FETCH_SUCCESS_ACTION
+} from "../actions"
 
 export interface Action {
   type: String;
@@ -11,20 +14,20 @@ export interface Action {
 
 export const initialState = {
   fetchState: REQUEST_STATE.INITIAL,
-  restaurantsList: []
+  foodsList: []
 }
 
-export const restaurantsReducer = (state = initialState, action: Action) => {
+export const foodsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case RESTAURANTS_FETCHING_ACTION:
+    case FOODS_FETCHING_ACTION:
       return {
         ...state,
         fetchState: REQUEST_STATE.LOADING,
       };
-    case RESTAURANTS_FETCH_SUCCESS_ACTION:
+    case FOODS_FETCH_SUCCESS_ACTION:
       return {
         fetchState: REQUEST_STATE.OK,
-        restaurantsList: action.payload.restaurants,
+        foodsList: action.payload.foods,
       };
     default:
       throw new Error();

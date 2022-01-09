@@ -35,7 +35,7 @@ const App: React.FC = () => {
           path="/restaurants/:restaurantsId/foods"
           render={({ match }) =>
             <Foods
-              restaurantsId={match.params.restaurantsId}
+              restaurantsId={Number(match.params.restaurantsId)}
             />
           }
         />

@@ -7,10 +7,16 @@ import { Link } from "react-router-dom";
 import { fetchRestaurants, RestaurantApiType } from '../apis/restaurants'
 
 // action
-import { FETCHING_ACTION, FETCH_SUCCESS_ACTION } from "../actions"
+import {
+  RESTAURANTS_FETCHING_ACTION,
+  RESTAURANTS_FETCH_SUCCESS_ACTION
+} from "../actions"
 
 // reducer
-import { restaurantsReducer, initialState } from "../reducers/restaurants"
+import {
+  restaurantsReducer,
+  initialState as restaurantsInitialState
+} from "../reducers/restaurants"
 
 // images
 import MainLogo from '../images/logo.png'
@@ -68,22 +74,22 @@ const SubText = styled.p`
 `
 
 const Restaurants = () => {
-  const [state, dispatch] = useReducer(restaurantsReducer, initialState)
+  const [restaurantsState, dispatch] = useReducer(restaurantsReducer, restaurantsInitialState)
 
   useEffect(() => {
-    dispatch({type: FETCHING_ACTION})
+    dispatch({type: RESTAURANTS_FETCHING_ACTION})
 
     fetchRestaurants()
       .then(data => {
         dispatch({
-          type: FETCH_SUCCESS_ACTION,
+          type: RESTAURANTS_FETCH_SUCCESS_ACTION,
           payload: {
             restaurants: data.restaurants
           }
         })
-      })
+      }
+    )
   }, [])
-  console.log(state)
 
   return (
     <>
@@ -95,14 +101,14 @@ const Restaurants = () => {
       </MainCoverImageWrapper>
       <RestaurantsContentsList>
         {
-          state.fetchState === REQUEST_STATE.LOADING ?
+          restaurantsState.fetchState === REQUEST_STATE.LOADING ?
             <>
               <Skeleton variant="rect" width={450} height={300} />
               <Skeleton variant="rect" width={450} height={300} />
               <Skeleton variant="rect" width={450} height={300} />
             </>
           :
-            state.restaurantsList.map((item: RestaurantApiType, index: number) =>
+            restaurantsState.restaurantsList.map((item: RestaurantApiType, index: number) =>
               <Link to={`/restaurants/${item.id}/foods`} key={index} style={{ textDecoration: 'none' }}>
                 <RestaurantsContentWrapper>
                   <RestaurantsImageNode src={RestaurantImage} />
